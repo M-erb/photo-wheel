@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Satisfy');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Allura');
+@import url('https://fonts.googleapis.com/css?family=Delius+Swash+Caps');
+
+@import 'https://fonts.googleapis.com/css?family=Raleway:100,300';
+@import 'https://fonts.googleapis.com/css?family=Poiret+One';
+@import 'https://fonts.googleapis.com/css?family=Open+Sans';
+
+// general colors and controls
+$black: #323738;
+$gray: #595959;
+$mid-gray: #B2B2B2;
+$light_gray: #C1CAD6;
+$extra_light_gray: #F6F6F6;
+$difused_gray: rgba(239, 241, 244, 0.8);
+$controls: #ACB5BF;
+$placeholder: rgba(180,180,180,.6);
+$approved: #2ecc71;
+$warning: #DE3636;
+
+//  color palette
+$primColor: #7BD5ED;
+$secColor: #7BD59C;
+$accentColor: #C1CAD6;
+$noticeColor: #e74c3c;//FF4349 #e74c3c
+$baseColor: #FFFFFF;
+
+// nav colors
+$nav_c: $black;
+$nav_alt: #fff;
+$nav_bkgd: transparent;
+$nav_bkgd_alt: rgba(41,41,41,.9);
+
+// fonts
+$titlesFont: 'Open Sans', sans-serif;
+$readFont: 'Open Sans', sans-serif;
+$controlsFont: $readFont;
+
+// hero
+$heroImg: '../img/hero/blue-hero-image-for-landing-page1920x1080.png';
+
+//vue.js
+[v-cloak] {
+  display: none;
+}

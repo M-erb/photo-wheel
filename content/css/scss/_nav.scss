@@ -1,0 +1,185 @@
+.main_nav {
+	background-color: #fff;
+  color: $black;
+  height: 70px;
+  width: 100%;
+	position: relative;
+	z-index: 1;
+	@include flexBox();
+	@include alignItems(center);
+	position: relative;
+	.main_nav_wrap {
+		@include flexBox();
+		@include justifyContent(space-between);
+		@include alignItems(center);
+		padding-top: 10px;
+	}
+	.mobi_nav {
+		display: none;height: 100%;
+		font-size: 1rem;
+		@include justifyContent(flex-end);
+		@include alignItems(center);
+		.mobi_menu_icon {
+			position: relative;
+			width: 36px;
+			height: 28px;
+			z-index: 12;
+			cursor: pointer;
+			.line {
+				position: absolute;
+				background-color: $gray;
+				width: 100%;
+				height: 4px;
+				border-radius: 3px;
+				left: 0;
+				transition: all 0.3s;
+				&:first-child {
+					top: 0;
+				}
+				&:nth-child(2) {
+					top: 50%;
+					@include translate(0px, -50%);
+				}
+				&:last-child {
+					bottom: 0;
+				}
+			}
+		}
+		&.active_nav {
+			.mobi_menu_icon {
+				.line {
+					background-color: #fff;
+					&:first-child {
+						@include rotate(45deg);
+						transform-origin: left;
+					}
+					&:nth-child(2) {
+						@include translate(200px, -50%);
+					}
+					&:last-child {
+						@include rotate(-45deg);
+						transform-origin: left;
+					}
+				}
+			}
+		}
+	}
+	.mobi_nav_screen {
+		display: none;
+		position: fixed;
+		width: 100%;
+		min-height: 100%;
+		top: 0;
+		left: 0;
+		z-index: 10;
+		@include flexBox();
+		@include justifyContent(center);
+		@include alignItems(center);
+		@include translateY(-100%);
+		transition: all 0.3s;
+		background-color: $primColor;
+		ul {
+			font-size: 2.5rem;
+			text-align: center;
+			li {
+				margin-bottom: 20px;
+				text-transform: uppercase;
+				color: #fff;
+				background-color: darken($primColor, 5%);
+				border: 4px solid lighten($primColor, 5%);
+				cursor: pointer;
+				&:last-child {
+					background-color: $primColor;
+					border: none
+				}
+				a {
+					padding: 16px 30px;
+					display: block;
+					color: #fff;
+					text-decoration: none;
+					cursor: pointer;
+					&.btn_notice {
+						color: #fff;
+					}
+				}
+			}
+		}
+	}
+	.site_title {
+		@include flexBox();
+		@include justifyContent(flex-start);
+		@include alignItems(center);
+		img {
+			width: 46px;
+		}
+		h1 {
+			font-size: 1.3rem;
+			margin-left: 14px;
+		}
+	}
+	ul.desktop_nav {
+		height: 100%;
+		font-size: 1rem;
+		@include flexBox();
+		@include justifyContent(flex-end);
+		@include alignItems(center);
+		li {
+			padding-right: 20px;
+			cursor: pointer;
+			&:last-child {
+				padding-right: 0;
+			}
+			a {
+				color: $black;
+				cursor: pointer;
+				text-decoration: none;
+				&.btn_notice_s {
+					color: #fff;
+				}
+			}
+		}
+	}
+	&::after {
+		content: '';
+		position: absolute;
+		background-color: inherit;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		height: 130px;
+    display: block;
+    z-index: -1;
+    -webkit-backface-visibility: hidden;
+    transform: skewY(-2deg);
+    transform-origin: 100%;
+		box-shadow: 0 15px 14px -10px rgba($black, 0.3);
+	}
+	@media (max-width: 870px) {
+		.main_nav_wrap {
+			.desktop_nav {
+				display: none;
+			}
+			.mobi_nav {
+				@include flexBox();
+			}
+			.mobi_nav_screen {
+				@include flexBox();
+				&.open_mobi_menu {
+					@include translateY(0);
+				}
+			}
+		}
+	}
+}
+
+// hide the scroll bar when mobi nav menu
+// is open
+div#app {
+	@media (max-width: 870px) {
+		&.active_nav {
+			overflow: hidden;
+			max-height: 100vh;
+		}
+	}
+}

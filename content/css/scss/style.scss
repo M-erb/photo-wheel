@@ -1,0 +1,431 @@
+@import 'var';
+@import 'mixins';
+@import 'reset';
+@import 'controls';
+@import 'nav';
+@import 'main';
+@import 'photo-wheel';
+@import 'animate';
+@import 'slide-show';
+@import 'media-queries';
+@import 'overrides';
+
+p {
+	font-family: $readFont;
+	font-size: 1rem;
+	line-height: 1.2;
+}
+header a {
+  text-decoration: none;
+}
+a {
+	font-family: $readFont;
+	color: $primColor;
+}
+a:hover {
+	color: $primColor;
+}
+h1 {
+	font-size: 220%;
+	font-weight: 800;
+	font-family: $titlesFont;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+	text-transform: capitalize;
+}
+h2 {
+	font-family: $titlesFont;
+	font-size: 150%;
+	margin-bottom: 20px;
+	text-transform: capitalize;
+}
+h3 {
+	font-family: $readFont;
+	font-size: 120%;
+	margin-bottom: 20px;
+	text-transform: capitalize;
+}
+h4 {
+	font-size: 100%;
+  font-family: $readFont;
+	margin-bottom: 10px;
+	text-transform: capitalize;
+}
+
+h6 {
+	font-weight: 700;
+  font-size: 110%;
+  background: darkgray;
+  padding: 10px 0 8px 19px;
+  margin-top: 30px;
+}
+.title {
+	margin: 0.7em 0;
+}
+blockquote {
+  margin: 10px 0;
+  padding: 15px 50px;
+  font-weight: 600;
+  font-style: italic;
+  border-left: 20px solid #ccc;
+  background: $primColor;
+  color: white;
+	i {
+		font-size: 2em!important;
+		color: $light_gray;
+		margin-right: 5px;
+	}
+}
+strong {
+	font-weight:700;
+	font-family: $readFont;
+}
+// for hightlighting line line of code in paragraph
+code {
+	font-family: monospace;
+	background: rgba($light_gray, 0.5);
+	padding: 4px 6px 6px 6px;
+}
+// for displaying large snippets of code
+pre {
+	display: inline-block;
+	width: 100%;
+	background: rgba($gray, 0.8);
+	color: #fff;
+	padding: 30px;
+	font-family: monospace;
+	font-size: 0.8em;
+  white-space: pre;
+  overflow-y: hidden;
+	margin-bottom: 0.5em;
+	/* Replace the & character with &amp;
+		Replace the < character with &lt;
+		Replace the > character with &gt; */
+	&.alt {
+		background: rgba($light_gray, 0.8);
+	}
+}
+img {
+	-webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+	display: block;
+	max-width: 100%;
+	font-size: 0.4em;
+}
+
+body {
+  line-height: 1;
+	-webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+	position: relative;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  font-size: 1.6rem;
+  color: $black;
+	width: 100%;
+	position: relative;
+	z-index: 1;
+}
+
+::-moz-selection {\background: $primColor}
+
+::selection {background: $primColor}
+
+/*-structure*/
+header {
+	width: 100%;
+	min-height: 100px;
+}
+.header {
+	position: relative;
+	padding: 20px;
+}
+.home_header {
+
+}
+.hero_header {
+	background-color: $primColor;
+	background-image: url($heroImg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	@include flexBox();
+	@include justifyContent(center);
+	@include alignItems(center);
+	@include flexWrap(wrap);
+	width: 100%;
+	min-height: 100vh;
+	padding: 40px 0 60px 0;
+	border-bottom: 14px solid $primColor;
+	.hero_banner_text {
+		padding: 60px;
+		h3 {
+			margin-bottom: 1.8rem;
+			font-size: calc(1.5rem + 2vw);
+			font-weight: bolder;
+			font-family: 'Open Sans', sans-serif;
+			color: #fff;
+			text-shadow: 3px 3px 2px rgba($black, 0.5);
+			background-color: rgba($black, 0.5);
+			padding: 15px 10px;
+			display: inline-block;
+		}
+		@media (max-width: 900px) {
+			text-align: center;
+		}
+		@media (max-width: 610px) {
+			background-color: rgba($black, 0.5);
+			margin: 30px;
+			padding: 10px;
+			h3 {
+				margin-bottom: 0.2rem;
+				background-color: transparent;
+			}
+		}
+	}
+	.hero_form {
+		form {
+			background-color: darken($extra_light_gray, 1%);
+			padding: 30px;
+			box-shadow: 9px 9px 8px rgba($black, 0.4);
+			h3 {
+				text-align: center;
+			}
+			button {
+				text-align: center;
+				margin: 0 auto;
+				display: block;
+			}
+		}
+	}
+}
+
+main {
+	width: 100%;
+	min-height: 200vh;//80
+}
+.page_wrap {
+  width: 90%;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+	position: relative;
+	@media (max-width: 800px) {
+		width: 96%;
+		max-width: 100%;
+	}
+}
+.page_section {
+  width: 100%;
+  padding: 5em 0;
+	position: relative;
+}
+.mini_page_section {
+	width: 100%;
+  padding: 2em 0;
+	position: relative;
+}
+
+.full_page_section {
+  width: 100%;
+  min-height: 100vh;
+  padding: 5em 0;
+	position: relative;
+}
+.mini_full_page_section {
+  width: 100%;
+  min-height: 100vh;
+  padding: 2em 0;
+	position: relative;
+}
+
+// visual cues
+.box {
+	padding: 1em;
+}
+.card_round {
+	display: inline-block;
+	border-radius: 2px;
+	padding: 20px;
+}
+.card {
+	display: inline-block;
+	margin: 30px 0;
+}
+.card_pad {
+	display: inline-block;
+	margin: 30px 0;
+	padding: 20px;
+}
+.large_card {
+	display: inline-block;
+	margin: 30px 0;
+}
+.large_card_pad {
+	display: inline-block;
+	padding: 60px;
+	margin: 30px 0;
+}
+
+/*flex containers*/
+.flex_start {
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	.card {
+		width: 260px;
+		margin: 30px;
+	}
+	.card_pad {
+		width: 260px;
+		margin: 30px;
+	}
+}
+.flex_center {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	.card {
+		width: 260px;
+		margin: 30px;
+	}
+	.card_pad {
+		width: 260px;
+		margin: 30px;
+	}
+}
+.flex_around {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	.card {
+		width: 260px;
+		margin: 30px;
+	}
+	.card_pad {
+		width: 260px;
+		margin: 30px;
+	}
+}
+.flex_between {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	.card {
+		width: 260px;
+		margin: 30px;
+	}
+	.card_pad {
+		width: 260px;
+		margin: 30px;
+	}
+}
+
+// backgrounds
+.primColor_solid {
+  background-color: $primColor;
+  color: $baseColor;
+	a {
+		color: lighten($light_gray, 10%);
+	}
+}
+.secColor_solid {
+  background-color: $secColor;
+  color: $baseColor;
+	a {
+		color: lighten($light_gray, 10%);
+	}
+}
+.accentColor_solid {
+  background-color: $accentColor;
+  color: $black;
+}
+.noticeColor_solid {
+  background-color: $noticeColor;
+  color: $baseColor;
+}
+.baseColor_solid {
+  background-color: $baseColor;
+  color: $black;
+}
+
+.light_gray_solid {
+  background-color: lighten($light_gray, 10%);
+  color: $black;
+}
+.gray_solid {
+  background-color: $gray;
+  color: #fff;
+}
+.black_solid {
+  background-color: $black;
+  color: #fff;
+}
+
+/*-page Page Animations
+------------------------------------------------------------------------------*/
+.page {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	color: #fff;
+}
+
+/*enter and leave animations*/
+.views.ng-enter {
+	animation-name: fadeIn;
+	animation-duration: 0.8s;
+}
+
+.views.ng-leave {
+	animation-name: fadeOut;
+	animation-duration: 0.8s;
+}
+
+/*angular show animations*/
+.ng-hide {
+	transition: opacity ease-in-out 0.1s;
+	opacity: 0;
+	display: block!important;
+	position: absolute;
+}
+
+* {
+	transition: opacity ease-in-out 0.2s;
+}
+
+main {
+  font-size: calc(0.9rem + 0.4vmax);
+  .text_body {
+    margin-bottom: 2em;
+    line-height: 1.2;
+    h4 {
+      margin-bottom: 0.6em;
+      font-weight: bold;
+    }
+    p {
+      margin-bottom: 0.5em;
+			&:last-child {
+				margin-bottom: 0;
+			}
+    }
+    h5 {
+      font-weight: bold;
+      margin: 1em 0 0.4em 0;
+    }
+    ul {
+      list-style: disc;
+      margin-left: 1.6em;
+      margin-bottom: 0.4em;
+      li {
+        line-height: 1.4;
+      }
+    }
+  }
+}
