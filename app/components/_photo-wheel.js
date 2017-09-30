@@ -3,10 +3,10 @@ Vue.component('photo-wheel', {
     <div class="wh_area">
       <!--<pre>{{wheelImgs}}</pre>-->
       <div class="wh_outer">
-        <ul class="wh_img_list">
+        <ul class="wh_img_list" :style="{transform: 'rotate(-' + curPosition + 'deg)'}">
           <li v-for="(item, index) in wheelImgs" :class="['wh_img', 'wh_' + (index + 1)]">
             <a v-on:click="selectItem(item)">
-              <!--<img :src="item.miniImgUrl" :alt="item.name">-->
+              <img :src="item.miniImgUrl" :alt="item.name">
             </a>
           </li>
         </ul>
@@ -14,16 +14,19 @@ Vue.component('photo-wheel', {
           <div class="wh_instructions" v-if="!featuredItem.filled">
             <p>Click on an image to view it</p>
           </div>
-          <div class="wh_featuredItem" v-if="featuredItem.filled" :style="{backgroundImage: 'url(' + featuredItem.lgImgUrl + ')'}">
-            <!-- <img :src="featuredItem.lgImgUrl" :alt="featuredItem.name"> -->
-            <p>{{featuredItem.name}}</p>
-          </div>
+          <transition name="fade">
+            <div class="wh_featuredItem" v-if="featuredItem.filled" :style="{backgroundImage: 'url(' + featuredItem.lgImgUrl + ')'}">
+              <!-- <img :src="featuredItem.lgImgUrl" :alt="featuredItem.name"> -->
+              <p>{{featuredItem.name}}</p>
+            </div>
+          </transition>
         </div>
       </div>
     </div>
   `,
   data: function() {
     return {
+      curPosition: 0,
       featuredItem: {
         miniImgUrl: '',
         lgImgUrl: '',
@@ -34,53 +37,61 @@ Vue.component('photo-wheel', {
       },
       wheelImgs: [
         {
-          miniImgUrl: 'content/img/img1.jpg',
-          lgImgUrl: 'content/img/img1.jpg',
+          miniImgUrl: 'content/img/200_christopher-ruel-221920.jpg',
+          lgImgUrl: 'content/img/600_christopher-ruel-221920.jpg',
           name: 'Project One',
           details: 'Some details for project one',
-          type: 'Mechanical'
+          type: 'Mechanical',
+          position: 0
         }, {
-          miniImgUrl: 'content/img/img2.jpg',
-          lgImgUrl: 'content/img/img2.jpg',
+          miniImgUrl: 'content/img/200_elena-saharova-215516.jpg',
+          lgImgUrl: 'content/img/600_elena-saharova-215516.jpg',
           name: 'Project Two',
           details: 'Some details for project Two',
-          type: 'Mechanical'
+          type: 'Mechanical',
+          position: 45
         }, {
-          miniImgUrl: 'content/img/img3.jpeg',
-          lgImgUrl: 'content/img/img3.jpeg',
+          miniImgUrl: 'content/img/200_img3.jpg',
+          lgImgUrl: 'content/img/600_img3.jpg',
           name: 'Project Three',
           details: 'Some details for project Three',
-          type: 'Mechanical'
+          type: 'Mechanical',
+          position: 90
         }, {
-          miniImgUrl: 'content/img/img4.jpg',
-          lgImgUrl: 'content/img/img4.jpg',
+          miniImgUrl: 'content/img/200_joel-filipe-226909.jpg',
+          lgImgUrl: 'content/img/600_joel-filipe-226909.jpg',
           name: 'Project Four',
           details: 'Some details for project Four',
-          type: 'Mechanical'
+          type: 'Mechanical',
+          position: 135
         }, {
-          miniImgUrl: 'content/img/img5.jpg',
-          lgImgUrl: 'content/img/img5.jpg',
+          miniImgUrl: 'content/img/200_jonas-jacobsson-344603.jpg',
+          lgImgUrl: 'content/img/600_jonas-jacobsson-344603.jpg',
           name: 'Project Five',
           details: 'Some details for project Five',
-          type: 'Mechanical'
+          type: 'Mechanical',
+          position: 180
         }, {
-          miniImgUrl: 'content/img/img6.jpeg',
-          lgImgUrl: 'content/img/img6.jpeg',
+          miniImgUrl: 'content/img/200_img6.jpg',
+          lgImgUrl: 'content/img/600_img6.jpg',
           name: 'Project Six',
           details: 'Some details for project Six',
-          type: 'Mechanical'
+          type: 'Mechanical',
+          position: 225
         }, {
-          miniImgUrl: 'content/img/img7.jpeg',
-          lgImgUrl: 'content/img/img7.jpeg',
+          miniImgUrl: 'content/img/200_img7.jpg',
+          lgImgUrl: 'content/img/600_img7.jpg',
           name: 'Project Seven',
           details: 'Some details for project Seven',
-          type: 'Mechanical'
+          type: 'Mechanical',
+          position: 270
         }, {
-          miniImgUrl: 'content/img/img8.jpeg',
-          lgImgUrl: 'content/img/img8.jpeg',
+          miniImgUrl: 'content/img/200_img8.jpg',
+          lgImgUrl: 'content/img/600_img8.jpg',
           name: 'Project Eight',
           details: 'Some details for project Eight',
-          type: 'Mechanical'
+          type: 'Mechanical',
+          position: 315
         }
       ],
     }
@@ -88,6 +99,8 @@ Vue.component('photo-wheel', {
   methods: {
     selectItem(item) {
       var vm = this
+      vm.featuredItem.filled =false
+      vm.curPosition = item.position
       vm.featuredItem = Object.assign(vm.featuredItem, item)
       vm.featuredItem.filled = true
     }

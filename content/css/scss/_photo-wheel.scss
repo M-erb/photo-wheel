@@ -27,7 +27,8 @@ $dk_gray: #414141;
       top: 0;right: 0;bottom: 0;left: 0;
       z-index: 10;
       transition: 1.3s cubic-bezier(0.44, -0.08, 0.6, 1.13);
-      transform: rotate(180deg);
+      // temp
+      // transform: rotate(180deg);
       li.wh_img {
         width: 180px;
         height: 180px;
@@ -138,4 +139,12 @@ $dk_gray: #414141;
       }
     }
   }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
